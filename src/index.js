@@ -55,7 +55,8 @@ class Game extends React.Component {
       stepNumber: 0,
       xIsNext: true,
       coordinates:  Array(9).fill(null),
-      i: 0
+      i: 0,
+      bold: 'none'
     };
   }
 
@@ -91,7 +92,8 @@ class Game extends React.Component {
       stepNumber: history.length ,
       xIsNext: !this.state.xIsNext,
       coordinates: coordsArr,
-      i: i
+      i: i,
+      bold: 12
     });
   }
 
@@ -99,6 +101,7 @@ class Game extends React.Component {
     this.setState({
       stepNumber: step,
       xIsNext: (step % 2) === 0,
+      bold: step,
     });
   }
 
@@ -114,11 +117,20 @@ class Game extends React.Component {
       const desc = move ?
           'Go to move #' + move + ' Coordinates: ' + currentCoordinates:
           'Go to game start';
-      return (
-          <li key={move}>
-            <button onClick={() => this.jumpTo(move)}>{desc}</button>
-          </li>
-      );
+      if (move === this.state.bold) {
+        return (
+            <li key={move}>
+              <button style={{fontWeight: 'bold'}} onClick={() => this.jumpTo(move)}>{desc}</button>
+            </li>
+        );
+      }else {
+        return (
+            <li key={move}>
+              <button onClick={() => this.jumpTo(move)}>{desc}</button>
+            </li>
+        );
+      }
+
     });
     let status;
     let madeSteps = ($("li").length);
