@@ -56,7 +56,7 @@ class Game extends React.Component {
       xIsNext: true,
       coordinates:  Array(9).fill(null),
       i: 0,
-      bold: 'none'
+      bold: 999
     };
   }
 
@@ -93,7 +93,7 @@ class Game extends React.Component {
       xIsNext: !this.state.xIsNext,
       coordinates: coordsArr,
       i: i,
-      bold: 12
+      bold: 999
     });
   }
 
@@ -133,7 +133,8 @@ class Game extends React.Component {
 
     });
     let status;
-    let madeSteps = ($("li").length);
+    let madeSteps = this.state.stepNumber;
+
     if (winner) {
       status = 'Winner: ' + winner;
     } else {
