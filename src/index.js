@@ -22,9 +22,6 @@ function Square(props) {
 }
 
 class Board extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   renderSquare = (i) => {
       return (
@@ -44,7 +41,6 @@ class Board extends React.Component {
       for (let j=0; j<3; j++ ) {
         buildSquare.push(this.renderSquare(i+j));
       }
-      buildSquare.push(<br />);
     }
     return(
         <div>
@@ -109,6 +105,7 @@ class Game extends React.Component {
       case 6: coordinates = '3:1';break;
       case 7: coordinates = '3:2';break;
       case 8: coordinates = '3:3';break;
+      default:break;
     }
 
     const coordsArr = this.state.coordinates;
